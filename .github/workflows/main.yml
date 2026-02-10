@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4  # En güncel checkout sürümü
 
       - name: Buildozer Action
         uses: ArtemSerebrennukov/buildozer-action@v1
@@ -15,7 +15,7 @@ jobs:
           repository_root: .
 
       - name: Upload APK
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4  # Hata veren v2 yerine en güncel v4
         with:
-          name: package
-          path: ${{ steps.buildozer.outputs.filename }}
+          name: İhale-Radar-Paketi
+          path: bin/*.apk
