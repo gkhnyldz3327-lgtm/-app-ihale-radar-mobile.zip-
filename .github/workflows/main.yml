@@ -21,11 +21,16 @@ jobs:
       - name: Build with Buildozer
         run: |
           export PATH=$PATH:$HOME/.local/bin
-          # Eğer .spec dosyası yoksa varsayılan bir tane oluşturur
+          # Dosya kontrolü (Hata 100'ü çözmek için)
+          ls -R
+          if [ ! -f main.py ]; then
+            echo "HATA: Ana dizinde main.py dosyası bulunamadı!"
+            exit 1
+          fi
           if [ ! -f buildozer.spec ]; then
             buildozer init
           fi
-          # Hata almamak için 'yes' diyerek tüm lisansları kabul eder
+          # Otomatik onay ve derleme
           yes | buildozer android debug
 
       - name: Upload APK
